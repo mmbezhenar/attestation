@@ -3,7 +3,7 @@
 <body>
 
 <form id="uniqueForm" name="uniqueForm" action="" method="post">
-<input type="number" name="money" value="101" data-id="w0"> Money <Br>
+  <input type="number" name="money" value="101" data-id="w0" id ="mmoney" > Money <Br>
 </form>
 <p>-----------------------------------------</p>
 <p>Product: <input type="text" id="field1" value="Computer 99$" ></p>
@@ -17,18 +17,41 @@
 <p>-----------------------------------------</p>
 <p>Your cart</p>
 <p>Your products: <input type="text" id="field2"></p>
+
+<form id="uniqueForm1" name="uniqueForm1" action="" method="post">
 <p>number <input type="number" id="num"></p>
-<p>money remain<input type="number" id="remain"></p>
+</form>
+
+<form id="uniqueForm3" name="uniqueForm3" action="" method="post">
+<p>money remain<input type="number" name="remainMoney" id="remain"></p>
+</form>
+
+<button onclick="finishTransaction()" id="btn1" >Agree to buy </button>
 
 
 <script>
   function myFunction() {
     if(Number(uniqueForm.money.value) >= Number(event.target.dataset.value)) {
-    //  document.getElementById("field2").value = document.getElementById("field1").value;
+        document.getElementById("field2").value = document.getElementById("field1").value;
       document.getElementById("num").value = 1;
       document.getElementById("remain").value = Number(uniqueForm.money.value) - Number(event.target.dataset.value);
     }
+    else {
+      alert("You have not enough money");
+    }
   }
+  function finishTransaction(){
+    if(Number(uniqueForm3.remainMoney.value > 0)){
+      document.getElementById("mmoney").value = Number(uniqueForm3.remainMoney.value);
+    }
+    clearData();
+  }
+  function clearData(){
+    document.getElementById("field2").value = "none";
+    document.getElementById("num").value = 0;
+    document.getElementById("remain").value = 0;
+  }
+
 
 </script>
 
